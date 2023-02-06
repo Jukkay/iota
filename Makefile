@@ -12,3 +12,6 @@ goto-server:
 
 goto-dashboard:
 	docker-compose exec dashboard /bin/bash
+
+install:
+	docker-compose run dashboard "npm install"
