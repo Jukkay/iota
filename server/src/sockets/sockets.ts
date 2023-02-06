@@ -1,5 +1,4 @@
 import { Server } from 'socket.io';
-import { saveMessageToDatabase } from '../controllers/chat';
 import { saveNotificationToDatabase } from '../controllers/notification';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
 import { getClientURL, getServerToken } from '../utilities/checkENV';
@@ -46,11 +45,11 @@ export const sockets = (httpServer: HttpServer) => {
 			socket.on('send_message', async (matchID, data) => {
 				if (!matchID) return;
 				// Save message to database
-				const response = await saveMessageToDatabase(data);
-				if (!response)
-					throw new Error(
-						'Failed to save message. Please try again.'
-					);
+				// const response = await saveMessageToDatabase(data);
+				// if (!response)
+				// 	throw new Error(
+				// 		'Failed to save message. Please try again.'
+				// 	);
 				// Emit to receiver
 				socket.to(matchID).emit('receive_message', data);
 				updateUserActivity(socket.id);

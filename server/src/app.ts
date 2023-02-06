@@ -1,41 +1,24 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import userRouter from './routes/user';
-import imageRouter from './routes/image';
-import profileRouter from './routes/profile';
-import { refreshToken, verifyEmailToken } from './controllers/token';
-import { resetPassword } from './controllers/resetpassword';
+// import userRouter from './routes/user';
+// import { refreshToken, verifyEmailToken } from './controllers/token';
+// import { resetPassword } from './controllers/resetpassword';
 import {
-	sendNewEmailVerification,
-	sendPasswordReset,
-} from './controllers/mailer';
-import * as SQLConnect from './utilities/SQLConnect';
-import {
-	blockUser,
 	login,
-	logout,
-	reportUser,
-	updateLocationPermission,
+	logout
 } from './controllers/user';
-import likeRouter from './routes/like';
-import checkJWT from './middleware/checkJWT';
-import { searchProfiles } from './controllers/search';
-import logRouter from './routes/log';
-import matchRouter from './routes/match';
-import { getChatMessages } from './controllers/chat';
-import {
-	getNotifications,
-	markNotificationsRead,
-} from './controllers/notification';
-import { getProfilesUserLikes } from './controllers/like';
-import { updateLocation } from './controllers/updateLocation';
-import { updateProfileImage } from './controllers/updateProfileImage';
+// import checkJWT from './middleware/checkJWT';
+// import logRouter from './routes/log';
+// import {
+// 	getNotifications,
+// 	markNotificationsRead,
+// } from './controllers/notification';
 
-const app = express();
+export const app = express();
 
 // initialize db pool
-SQLConnect.init();
+// SQLConnect.init();
 
 // Middleware
 app.use(express.urlencoded({ extended: false, limit: '50mb' }));
@@ -53,69 +36,25 @@ app.get('/', (_req: express.Request, res: express.Response) => {
 app.post('/login', login);
 app.post('/logout', logout);
 
-// Refresh token
-app.post('/token', refreshToken);
+// // Refresh token
+// app.post('/token', refreshToken);
 
-// Request new verification email
-app.post('/emailtoken', sendNewEmailVerification);
+// // Verify email address
+// app.post('/verifyemail', verifyEmailToken);
 
-// Request password reset email
-app.post('/resetpasswordtoken', sendPasswordReset);
+// // *** Auth endpoints ***
 
-// Verify email address
-app.post('/verifyemail', verifyEmailToken);
+// // Reset password via email (auth with token posted in body)
+// app.post('/setpassword', resetPassword);
 
-// *** Auth endpoints ***
+// // Log CRUD route
+// app.use('/log', logRouter);
 
-// Reset password via email (auth with token posted in body)
-app.post('/setpassword', resetPassword);
+// // User CRUD route
+// app.use('/user', userRouter);
 
-// Profile search
-app.post('/search', checkJWT, searchProfiles);
+// // Notifications GET
+// app.get('/notifications/:id', checkJWT, getNotifications);
 
-// Log CRUD route
-app.use('/log', logRouter);
-
-// User CRUD route
-app.use('/user', userRouter);
-
-// Profile CRUD route
-app.use('/profile', profileRouter);
-
-// Image CRUD route
-app.use('/image', imageRouter);
-
-// Like CRUD route
-app.use('/like', likeRouter);
-
-// Match CRUD route
-app.use('/match', matchRouter);
-
-// Messages GET
-app.get('/messages/:id', checkJWT, getChatMessages);
-
-// Notifications GET
-app.get('/notifications/:id', checkJWT, getNotifications);
-
-// Notifications PATCH
-app.patch('/notifications/', checkJWT, markNotificationsRead);
-
-// Get profiles user likes
-app.get('/likedprofiles/:id', checkJWT, getProfilesUserLikes);
-
-// Report user
-app.post('/reportuser', checkJWT, reportUser);
-
-// Block user
-app.post('/blockuser', checkJWT, blockUser);
-
-// Update user's location
-app.post('/geolocation', checkJWT, updateLocation);
-
-// Update user's location permission
-app.post('/gpspermission', checkJWT, updateLocationPermission);
-
-// Update user's profile image
-app.post('/updateprofileimage', checkJWT, updateProfileImage);
-
-export default app;
+// // Notifications PATCH
+// app.patch('/notifications/', checkJWT, markNotificationsRead);

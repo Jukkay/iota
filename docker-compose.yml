@@ -9,7 +9,7 @@ services:
     working_dir: '/client'
     entrypoint: '/bin/bash -c'
     command:
-      - "node --watch client.ts"
+      - "npm start"
     ports:
       - 3000:3000
     environment:
@@ -22,15 +22,11 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data:/data/postgres
     environment:
       POSTGRES_USER: iota
-      POSTGRES_DB: iota
       POSTGRES_PASSWORD: RandomPassword
-      TZ: 'Europe/Helsinki'
-      PGTZ: 'Europe/Helsinki'
-      DOCKER_BUILDKIT: 1 docker build .
-
+      PGDATA: /data/postgres
   server:
     container_name: 'iota_server'
     image: node
@@ -39,18 +35,15 @@ services:
     volumes:
       - ./server:/server
     working_dir: "/server"
+    env_file:
+      - ./server/.env
     environment:
-        SERVER_TOKEN: RandomServerTokenSecret
-        REFRESH_TOKEN: RandomRefreshTokenSecret
-        POSTGRES_USER: iota
-        POSTGRES_DB: iota
-        POSTGRES_PASSWORD: RandomPassword
         PORT: 4000
         CLIENT_URL: http://localhost:3000
         DASHBOARD_URL: http://localhost:5000
     entrypoint: "/bin/bash -c"
     command:
-      - "node --watch server.ts"
+      - "npm start"
     ports:
       - 4000:4000
   

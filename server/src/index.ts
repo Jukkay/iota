@@ -1,4 +1,4 @@
-import app from './app';
+import { app } from './app';
 import { checkENV, getPort } from './utilities/checkENV';
 import { sockets } from './sockets/sockets';
 
