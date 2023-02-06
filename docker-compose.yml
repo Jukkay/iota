@@ -66,9 +66,10 @@ services:
         PORT: 5000
         CLIENT_URL: http://localhost:3000
         API_URL: http://localhost:4000
+        DATABASE_URL: "postgresql://iota:RandomPassword@db:5432/iota?schema=public"
     entrypoint: "/bin/bash -c"
     command:
-      - "yarn start"
+      - "npm run dev"
     ports:
       - 5000:5000
 
