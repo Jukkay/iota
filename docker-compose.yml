@@ -9,7 +9,7 @@ services:
     working_dir: '/client'
     entrypoint: '/bin/bash -c'
     command:
-      - "npm start"
+      - "node --watch client.ts"
     ports:
       - '3000:3000'
     environment:
@@ -50,7 +50,7 @@ services:
         DASHBOARD_URL: http://localhost:5000
     entrypoint: "/bin/bash -c"
     command:
-      - "npm start"
+      - "node --watch server.ts"
     ports:
       - 4000:4000
   
@@ -68,7 +68,7 @@ services:
         API_URL: http://localhost:4000
     entrypoint: "/bin/bash -c"
     command:
-      - "npm start"
+      - "yarn start"
     ports:
       - 5000:5000
 
