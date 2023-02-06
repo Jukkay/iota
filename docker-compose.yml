@@ -11,7 +11,7 @@ services:
     command:
       - "node --watch client.ts"
     ports:
-      - '3000:3000'
+      - 3000:3000
     environment:
       TZ: 'Europe/Helsinki'
       API_URL: http://localhost:4000
@@ -24,8 +24,8 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: root
-      POSTGRES_DB: hypertube
+      POSTGRES_USER: iota
+      POSTGRES_DB: iota
       POSTGRES_PASSWORD: RandomPassword
       TZ: 'Europe/Helsinki'
       PGTZ: 'Europe/Helsinki'
@@ -42,7 +42,7 @@ services:
     environment:
         SERVER_TOKEN: RandomServerTokenSecret
         REFRESH_TOKEN: RandomRefreshTokenSecret
-        POSTGRES_USER: root
+        POSTGRES_USER: iota
         POSTGRES_DB: iota
         POSTGRES_PASSWORD: RandomPassword
         PORT: 4000
