@@ -8,6 +8,8 @@ import {
 	login,
 	logout
 } from './controllers/user';
+import { getClientURL, getDashboardURL } from './utilities/checkENV';
+import dataRouter from './routes/data';
 // import checkJWT from './middleware/checkJWT';
 // import logRouter from './routes/log';
 // import {
@@ -24,13 +26,16 @@ export const app = express();
 app.use(express.urlencoded({ extended: false, limit: '50mb' }));
 app.use(express.json({ limit: '50mb' }));
 app.use(helmet());
-app.use(cors());
-app.use('/images', express.static('./images'));
+app.use(cors({
+	origin: [getClientURL(), getDashboardURL()],
+}));
 
 // *** Endpoints without JWT auth ***
 app.get('/', (_req: express.Request, res: express.Response) => {
 	res.send('backend server is running');
 });
+
+app.use('/data', dataRouter);
 
 // Login and logout
 app.post('/login', login);

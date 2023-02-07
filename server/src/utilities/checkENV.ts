@@ -22,6 +22,12 @@ export const getClientURL = () => {
 	return process.env.CLIENT_URL;
 };
 
+export const getDashboardURL = () => {
+	if (!process.env.DASHBOARD_URL)
+		throw new Error('Cannot read env for DASHBOARD URL');
+	return process.env.DASHBOARD_URL;
+};
+
 export const getPort = () => {
 	if (!process.env.PORT) throw new Error('Cannot read env for port');
 	return process.env.PORT;
@@ -33,4 +39,5 @@ export const checkENV = () => {
 	getRefreshToken();
 	getDatabaseURL();
 	getClientURL();
+	getDashboardURL();
 };

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2022"], // ES2020 in earlier versions
+    "module": "ES2022", //ESNext 
+    "moduleResolution": "Node",
+    "target": "ES2022", // ES2020 in earlier versions
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "./dist",                        /* Redirect output structure to the directory. */
+    // "rootDir": "./src",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+}
+}

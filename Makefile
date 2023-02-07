@@ -1,6 +1,9 @@
 up:
 	docker-compose up
 
+down:
+	docker-compose down
+
 goto-client:
 	docker-compose exec client /bin/bash
 
@@ -18,3 +21,6 @@ install-dashboard:
 
 install-server:
 	docker-compose run server "npm install"
+
+install-client:
+	docker-compose run client "npm install"

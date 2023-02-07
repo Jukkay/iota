@@ -9,24 +9,6 @@ import { Request, Response } from 'express';
 
 const register = async (req: Request, res: Response) => {
 	try {
-		// const validationResponse = await validateRegistrationInput(req);
-		// if (!validationResponse.valid)
-		// 	return res.status(400).json(validationResponse);
-		// const { username, password, name, email, birthday } = req.body;
-		// const hash = await bcryptjs.hash(password, 10);
-		// const sql = `
-		// INSERT INTO 
-		// 	users 
-		// 	(
-		// 		username, 
-		// 		password, 
-		// 		email, 
-		// 		name, 
-		// 		birthday
-		// 	) 
-		// VALUES (?, ?, ?, ?, ?);`;
-		// await execute(sql, [username, hash, email, name, birthday]);
-		// await sendEmailVerification(req.body.email);
 		return res.status(201).json({
 			message: 'User added successfully',
 		});

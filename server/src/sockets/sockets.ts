@@ -1,8 +1,7 @@
 import { Server } from 'socket.io';
-import { saveNotificationToDatabase } from '../controllers/notification';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
 import { getClientURL, getServerToken } from '../utilities/checkENV';
-import { error } from '../utilities/logger';
+import { logError } from '../utilities/logger';
 import { Server as HttpServer } from 'http';
 import {
 	queryOnlineUsers,
@@ -64,8 +63,8 @@ export const sockets = (httpServer: HttpServer) => {
 
 			socket.on('send_notification', async (user_id, data) => {
 				if (!user_id) return;
-				// Save notification to database
-				await saveNotificationToDatabase(data);
+				// // Save notification to database
+				// await saveNotificationToDatabase(data);
 
 				// Emit to user
 				socket.to(user_id).emit('receive_notification', data);
@@ -83,6 +82,6 @@ export const sockets = (httpServer: HttpServer) => {
 			});
 		});
 	} catch (err) {
-		error(err);
+		logError(err);
 	}
 };

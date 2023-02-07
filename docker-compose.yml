@@ -5,17 +5,20 @@ services:
     container_name: 'iota_client'
     image: node
     volumes:
-      - './client:/client'
-    working_dir: '/client'
-    entrypoint: '/bin/bash -c'
+      - ./client:/client
+    working_dir: "/client"
+    env_file:
+      - ./client/.env
+    environment:
+        PORT: 3000
+        API_URL: http://localhost:4000
+        DASHBOARD_URL: http://localhost:5000
+    entrypoint: "/bin/bash -c"
     command:
-      - "npm start"
+      - "npm run dev"
     ports:
       - 3000:3000
-    environment:
-      TZ: 'Europe/Helsinki'
-      API_URL: http://localhost:4000
-
+      
   db:
     container_name: 'iota_db'
     image: postgres
@@ -43,7 +46,7 @@ services:
         DASHBOARD_URL: http://localhost:5000
     entrypoint: "/bin/bash -c"
     command:
-      - "npm start"
+      - "npm run dev"
     ports:
       - 4000:4000
   
