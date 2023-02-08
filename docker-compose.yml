@@ -4,6 +4,8 @@ services:
   client:
     container_name: 'iota_client'
     image: node
+    depends_on:
+      - server
     volumes:
       - ./client:/client
     working_dir: "/client"
@@ -11,7 +13,7 @@ services:
       - ./client/.env
     environment:
         PORT: 3000
-        API_URL: http://localhost:4000
+        API_URL: http://host.docker.internal:4000 ## There's a bug in node fetch that can't resolve localhost so using docker hostname instead
         DASHBOARD_URL: http://localhost:5000
     entrypoint: "/bin/bash -c"
     command:
@@ -30,6 +32,7 @@ services:
       POSTGRES_USER: iota
       POSTGRES_PASSWORD: RandomPassword
       PGDATA: /data/postgres
+
   server:
     container_name: 'iota_server'
     image: node

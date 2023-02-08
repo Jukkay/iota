@@ -16,7 +16,6 @@ const logger_1 = require("../utilities/logger");
 const initMeasurements = () => __awaiter(void 0, void 0, void 0, function* () {
     sendDataPoint();
     // Create interval
-    (0, logger_1.logInfo)('Initializing Measurements');
     (0, set_interval_async_1.setIntervalAsync)(() => __awaiter(void 0, void 0, void 0, function* () {
         sendDataPoint();
     }), (0, checkENV_1.getDataInterval)());
@@ -25,15 +24,18 @@ exports.initMeasurements = initMeasurements;
 const sendDataPoint = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const temperature = pollSensor();
-        // Send data to API
-        const res = yield fetch(`${(0, checkENV_1.getApiURL)()}/data`, {
+        const response = yield fetch(`${(0, checkENV_1.getApiURL)()}/data`, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify({
                 clientId: (0, checkENV_1.getClientId)(),
                 clientKey: (0, checkENV_1.getClientKey)(),
                 data: temperature.toString(),
             }),
         });
+        (0, logger_1.logInfo)(response);
     }
     catch (err) {
         (0, logger_1.logError)(err);

@@ -9,6 +9,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.initCheckin = void 0;
+const set_interval_async_1 = require("set-interval-async");
+const checkENV_1 = require("../utilities/checkENV");
+const logger_1 = require("../utilities/logger");
 const initCheckin = () => __awaiter(void 0, void 0, void 0, function* () {
+    sendCheckin();
+    // Create interval
+    (0, set_interval_async_1.setIntervalAsync)(() => __awaiter(void 0, void 0, void 0, function* () {
+        sendCheckin();
+    }), (0, checkENV_1.getCheckinInterval)());
 });
-exports.default = initCheckin;
+exports.initCheckin = initCheckin;
+const sendCheckin = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const response = yield fetch(`${(0, checkENV_1.getApiURL)()}/checkin`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                clientId: (0, checkENV_1.getClientId)(),
+                clientKey: (0, checkENV_1.getClientKey)(),
+            }),
+        });
+        (0, logger_1.logInfo)(response);
+    }
+    catch (err) {
+        (0, logger_1.logError)(err);
+    }
+});

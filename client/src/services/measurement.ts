@@ -8,9 +8,8 @@ import {
 import { logInfo, logError } from '../utilities/logger';
 
 export const initMeasurements = async () => {
-  sendDataPoint()
+	sendDataPoint();
 	// Create interval
-	logInfo('Initializing Measurements');
 	setIntervalAsync(async () => {
 		sendDataPoint();
 	}, getDataInterval());
@@ -19,15 +18,18 @@ export const initMeasurements = async () => {
 const sendDataPoint = async () => {
 	try {
 		const temperature = pollSensor();
-		// Send data to API
-		const res = await fetch(`${getApiURL()}/data`, {
+		const response = await fetch(`${getApiURL()}/data`, {
 			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
 			body: JSON.stringify({
 				clientId: getClientId(),
 				clientKey: getClientKey(),
 				data: temperature.toString(),
 			}),
 		});
+		logInfo(response)
 	} catch (err) {
 		logError(err);
 	}

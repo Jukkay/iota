@@ -1,7 +1,7 @@
-export const logInfo = (...params: (string | number)[]) => {
+export const logInfo = (...params: unknown[]) => {
 	console.log(...params);
 };
 
-export const logError = (err: any) => {
+export const logError = (err: unknown) => {
 	console.error(err);
 };
