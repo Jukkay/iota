@@ -35,7 +35,8 @@ const sendDataPoint = () => __awaiter(void 0, void 0, void 0, function* () {
                 data: temperature.toString(),
             }),
         });
-        (0, logger_1.logInfo)(response);
+        const { message } = yield response.json();
+        (0, logger_1.logInfo)(message, temperature);
     }
     catch (err) {
         (0, logger_1.logError)(err);
@@ -44,6 +45,5 @@ const sendDataPoint = () => __awaiter(void 0, void 0, void 0, function* () {
 const pollSensor = () => {
     // Create random number
     const temperature = (Math.random() * (55 - -55) + -55).toFixed(1);
-    (0, logger_1.logInfo)('Measured temperature:', temperature);
     return temperature;
 };

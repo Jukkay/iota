@@ -15,7 +15,6 @@ export const initCheckin = async () => {
 	}, getCheckinInterval());
 };
 
-
 const sendCheckin = async () => {
 	try {
 		const response = await fetch(`${getApiURL()}/checkin`, {
@@ -28,7 +27,8 @@ const sendCheckin = async () => {
 				clientKey: getClientKey(),
 			}),
 		});
-		logInfo(response)
+		const { message } = await response.json();
+		logInfo(message);
 	} catch (err) {
 		logError(err);
 	}

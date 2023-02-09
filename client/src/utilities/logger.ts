@@ -2,6 +2,6 @@ export const logInfo = (...params: unknown[]) => {
 	console.log(...params);
 };
 
-export const logError = (err: unknown) => {
-	console.error(err);
+export const logError = (...params: unknown[]) => {
+	console.error(...params);
 };

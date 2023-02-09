@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { ZodError } from 'zod';
 import { createDataPoint, findClient, updateClientActivity } from '../queries/dataQueries';
-import { logError } from '../utilities/logger';
+import { handleErrorsWithZod } from '../utilities/errorHandlers';
 import { validateDataPoint } from '../validators/inputValidators';
 
 // Controllers for dataRouter
@@ -22,14 +21,7 @@ export const receiveDataPoint = async (req: Request, res: Response) => {
             message: 'Successfully saved data point'
         })
 	} catch (err) {
-		logError(err);
-		if (err instanceof ZodError)
-			return res.status(400).json({
-				message: err.message,
-			});
-		return res.status(500).json({
-			message: 'Something went wrong',
-		});
+		handleErrorsWithZod(res, err)
 	}
 };
 

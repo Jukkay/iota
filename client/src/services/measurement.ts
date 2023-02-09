@@ -29,7 +29,8 @@ const sendDataPoint = async () => {
 				data: temperature.toString(),
 			}),
 		});
-		logInfo(response)
+		const { message } = await response.json();
+		logInfo(message, temperature);
 	} catch (err) {
 		logError(err);
 	}
@@ -38,6 +39,5 @@ const sendDataPoint = async () => {
 const pollSensor = () => {
 	// Create random number
 	const temperature = (Math.random() * (55 - -55) + -55).toFixed(1);
-	logInfo('Measured temperature:', temperature);
 	return temperature;
 };

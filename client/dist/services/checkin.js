@@ -33,7 +33,8 @@ const sendCheckin = () => __awaiter(void 0, void 0, void 0, function* () {
                 clientKey: (0, checkENV_1.getClientKey)(),
             }),
         });
-        (0, logger_1.logInfo)(response);
+        const { message } = yield response.json();
+        (0, logger_1.logInfo)(message);
     }
     catch (err) {
         (0, logger_1.logError)(err);

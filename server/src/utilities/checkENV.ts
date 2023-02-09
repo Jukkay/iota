@@ -1,14 +1,3 @@
-export const getServerToken = () => {
-	if (!process.env.SERVER_TOKEN)
-		throw new Error('Cannot read env for server token');
-	return process.env.SERVER_TOKEN;
-};
-
-export const getRefreshToken = () => {
-	if (!process.env.REFRESH_TOKEN)
-		throw new Error('Cannot read env for refresh token');
-	return process.env.REFRESH_TOKEN;
-};
 
 export const getDatabaseURL = () => {
 	if (!process.env.DATABASE_URL)
@@ -33,11 +22,21 @@ export const getPort = () => {
 	return process.env.PORT;
 };
 
+export const getConnectionCheckInterval = () => {
+	if (!process.env.CONNECTION_CHECK_INTERVAL) throw new Error('Cannot read env for connection check interval');
+	return Number(process.env.CONNECTION_CHECK_INTERVAL) * 60 * 1000;
+};
+
+export const getConnectionAlertInterval = () => {
+	if (!process.env.CONNECTION_ALERT_INTERVAL) throw new Error('Cannot read env for connection alert interval');
+	return Number(process.env.CONNECTION_ALERT_INTERVAL) * 60 * 1000;
+};
+
 export const checkENV = () => {
 	getPort();
-	getServerToken();
-	getRefreshToken();
 	getDatabaseURL();
 	getClientURL();
 	getDashboardURL();
+	getConnectionCheckInterval();
+	getConnectionAlertInterval()
 };

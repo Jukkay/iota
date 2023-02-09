@@ -5,7 +5,7 @@ const logInfo = (...params) => {
     console.log(...params);
 };
 exports.logInfo = logInfo;
-const logError = (err) => {
-    console.error(err);
+const logError = (...params) => {
+    console.error(...params);
 };
 exports.logError = logError;
