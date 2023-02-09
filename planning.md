@@ -18,39 +18,39 @@ Assume the server has plenty of resources available and good internet connection
 
 Client
 
-*[x] Simple node app
-*[x] Read client credentials from env
-*[x] Send random temperature every 5 minutes
-*[x] Check in every 15 minutes
+- [x] Simple node app
+- [x] Read client credentials from env
+- [x] Send random temperature every 5 minutes
+- [x] Check in every 15 minutes
 
 API
 
-*[x] Node Express
-*[x] Prisma
-*[x] Validate tokens on connection
-*[x] Save received information to DB
+- [x] Node Express
+- [x] Prisma
+- [x] Validate tokens on connection
+- [x] Save received information to DB
 
-*[x] data route
-    *[x] POST to receive data
+- [x] data route
+    - [x] POST to receive data
 
-*[x] checkin route
-    *[x] POST for client pinging ( update ping time )
+- [x] checkin route
+    - [x] POST for client pinging ( update ping time )
 
-*[x] Service
-    *[x] Check every minute if client has checked in last 15 minutes. Log if not.
+- [x] Service
+    - [x] Check every minute if client has checked in last 15 minutes. Log if not.
 
 Dashboard
 
-*[x] T3 app
-*[] Client status dashboard (ADMIN ONLY)
-    *[] Green if checked in last 15 minutes
-    *[] Yellow if hasn't checked in last 15-20 minutes
-    *[] Red if hasn't check in more that 20 minutes
-    *[] Button to ping client
-    *[] Button to go to client information
-*[] Login / Logout
-*[] client route (ADMIN ONLY)
-    *[] POST to register new client
-    *[] GET to get clients
-    *[] DELETE to remove client
-    *[] PUT to update client
+- [x] T3 app
+- [] Client status dashboard (ADMIN ONLY)
+    - [] Green if checked in last 15 minutes
+    - [] Yellow if hasn't checked in last 15-20 minutes
+    - [] Red if hasn't check in more that 20 minutes
+    - [] Button to ping client
+    - [] Button to go to client information
+- [] Login / Logout
+- [] client route (ADMIN ONLY)
+    - [] POST to register new client
+    - [] GET to get clients
+    - [] DELETE to remove client
+    - [] PUT to update client

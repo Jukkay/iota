@@ -51,18 +51,11 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Activity {
-  id          Int      @id @default(autoincrement())
-  clientId    String   @unique
-  lastCheckin DateTime @default(now())
-  Client      Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
-}
-
 model Client {
-  id        String      @id
-  clientKey String
-  Activity  Activity?
-  DataPoint DataPoint[]
+  id           String      @id
+  clientKey    String
+  lastActivity DateTime    @default(now())
+  DataPoint    DataPoint[]
 }
 
 model DataPoint {
