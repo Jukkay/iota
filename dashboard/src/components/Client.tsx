@@ -11,3 +11,13 @@ export const ClientItem = ({client}: {client: Client}) => {
   );
 };
 
+export const ClientList = ({clients}: {clients: Client[]}) => {
+  if (clients.length < 1) return <p>No clients found</p>;
+  return (
+    <>
+      {clients.map((client: Client) => (
+        <ClientItem client={client} />
+      ))}
+    </>
+  );
+};

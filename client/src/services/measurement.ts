@@ -30,6 +30,7 @@ const sendDataPoint = async () => {
 			}),
 		});
 		const { message } = await response.json();
+		if (response.status !== 200) return logError('ERROR:', message);
 		logInfo(message, temperature);
 	} catch (err) {
 		logError(err);

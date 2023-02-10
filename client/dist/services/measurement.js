@@ -36,6 +36,8 @@ const sendDataPoint = () => __awaiter(void 0, void 0, void 0, function* () {
             }),
         });
         const { message } = yield response.json();
+        if (response.status !== 200)
+            return (0, logger_1.logError)('ERROR:', message);
         (0, logger_1.logInfo)(message, temperature);
     }
     catch (err) {

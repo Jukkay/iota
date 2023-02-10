@@ -28,6 +28,7 @@ const sendCheckin = async () => {
 			}),
 		});
 		const { message } = await response.json();
+		if (response.status !== 200) return logError('ERROR:', message);
 		logInfo(message);
 	} catch (err) {
 		logError(err);

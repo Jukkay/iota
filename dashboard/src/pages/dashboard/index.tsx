@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 import { api } from "../../utils/api";
-import { ClientItem } from "../../components/Client";
-import { Client } from "@prisma/client";
+import { ClientList } from "../../components/Client";
 
 const Dashboard: NextPage = () => {
   const { data, isLoading, isError } = api.client.getAll.useQuery();
@@ -17,21 +16,10 @@ const Dashboard: NextPage = () => {
         <title>Client Dashboard</title>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-        <RenderClients clients={data}/>
+        <ClientList clients={data}/>
       </main>
     </>
   );
 };
 
 export default Dashboard;
-
-const RenderClients = ({clients}: {clients: Client[]}) => {
-  if (clients.length < 1) return <p>No clients found</p>;
-  return (
-    <>
-      {clients.map((client: Client) => (
-        <ClientItem client={client} />
-      ))}
-    </>
-  );
-};
