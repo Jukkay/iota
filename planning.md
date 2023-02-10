@@ -43,6 +43,7 @@ Dashboard
 
 - [x] T3 app
 - [] Client status dashboard (ADMIN ONLY)
+    - [x] Basic data: id, key, last activity
     - [] Green if checked in last 15 minutes
     - [] Yellow if hasn't checked in last 15-20 minutes
     - [] Red if hasn't check in more that 20 minutes

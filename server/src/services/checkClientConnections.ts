@@ -1,4 +1,4 @@
-import { Activity } from '.prisma/client';
+import { Client } from '@prisma/client';
 import { setIntervalAsync } from 'set-interval-async';
 import { getMissingClients } from '../queries/adminQueries';
 import { getConnectionAlertInterval, getConnectionCheckInterval } from '../utilities/checkENV';
@@ -21,6 +21,6 @@ const checkClientConnections = async () => {
 	}
 };
 
-const makeAlert = (missingClients: Activity[]) => {
+const makeAlert = (missingClients: Client[]) => {
 	logInfo(`Following clients have not checked in more than ${getConnectionAlertInterval() / 60 / 1000} minutes`, missingClients);
 }
