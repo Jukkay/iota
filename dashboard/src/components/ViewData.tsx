@@ -15,7 +15,7 @@ const TableRow = ({ datapoint }: { datapoint: DataPoint }) => {
   if (!datapoint) return null;
   return (
     <div className="m-3 flex">
-      <div className="m-1 flex rounded-lg bg-slate-50 text-indigo-600">
+      <div className="m-1 flex rounded-lg bg-slate-200 text-indigo-600">
         <div className="m-1 flex flex-col">
           <div>Data</div>
           <div className="text-black">{datapoint.dataPoint}</div>
