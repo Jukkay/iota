@@ -48,10 +48,10 @@ Dashboard
     - [] Yellow if hasn't checked in last 15-20 minutes
     - [] Red if hasn't check in more that 20 minutes
     - [] Button to ping client
-    - [] Button to go to client information
+    - [x] Button to go to client information
 - [] Login / Logout
 - [] client route (ADMIN ONLY)
-    - [] POST to register new client
-    - [] GET to get clients
-    - [] DELETE to remove client
-    - [] PUT to update client
+    - [x] POST to register new client
+    - [x] GET to get clients
+    - [x] DELETE to remove client
+    - [x] PUT to update client

@@ -8,7 +8,11 @@ import { ClientList, ClientListAdmin } from "../../components/Client";
 import { CreateClient } from "../../components/CreateClient";
 
 const ControlPanel: NextPage = () => {
+  const { status } = useSession();
   const { data, isLoading, isError } = api.client.getAll.useQuery();
+  if (status === "unauthenticated") {
+    return <p>Access Denied</p>
+  }
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error</p>;
   return (
@@ -16,13 +20,11 @@ const ControlPanel: NextPage = () => {
       <Head>
         <title>Client Administration</title>
       </Head>
-      <main className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-screen">
         <h1 className="text-5xl text-indigo-800 m-6">Admin</h1>
-        <h1 className="text-2xl text-indigo-800 my-6">Create new client</h1>
         <CreateClient />
-        <h1 className="text-2xl text-indigo-800 my-6">Create new client</h1>
-        <ClientListAdmin clients={data}/>
-      </main>
+        <ClientListAdmin clients={data} />
+      </div>
     </>
   );
 };

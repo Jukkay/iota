@@ -1,6 +1,9 @@
 import { Client } from "@prisma/client";
+
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { api } from "../utils/api";
+import { Button } from "./Form";
 
 export const ClientItem = ({ client }: { client: Client }) => {
   if (!client) return null;
@@ -31,9 +34,13 @@ export const ClientItem = ({ client }: { client: Client }) => {
 
 export const ClientItemAdmin = ({ client }: { client: Client }) => {
   if (!client) return null;
+  const router = useRouter()
   const mutation = api.client.delete.useMutation()
   const handleDelete = () => {
     mutation.mutate(client.id)
+  }
+  const handleEdit = () => {
+    router.push(`/editclient/${client.id}`)
   }
   return (
     <div className="m-3 flex">
@@ -51,14 +58,8 @@ export const ClientItemAdmin = ({ client }: { client: Client }) => {
           <div className="text-black">{`${client.lastActivity.toLocaleDateString()} ${client.lastActivity.toLocaleTimeString()}`}</div>
         </div>
       </div>
-      <Link href={`/viewdata/${client.id}`}>
-        <button className="m-1 rounded-lg bg-indigo-600 p-1 text-slate-50 shadow-xl">
-          Edit
-        </button>
-      </Link>
-      <button className="m-1 rounded-lg bg-indigo-600 p-1 text-slate-50 shadow-xl" onClick={handleDelete}>
-        Delete
-      </button>
+      <Button classNames="m-1" onClick={handleEdit}>Edit</Button>
+      <Button classNames="m-1" onClick={handleDelete}>Delete</Button>
     </div>
   );
 };
@@ -77,10 +78,13 @@ export const ClientList = ({ clients }: { clients: Client[] }) => {
 export const ClientListAdmin = ({ clients }: { clients: Client[] }) => {
   if (clients.length < 1) return <p>No clients found</p>;
   return (
-    <div className="rounded-lg border-4 border-indigo-600">
-      {clients.map((client: Client) => (
-        <ClientItemAdmin key={client.id} client={client} />
-      ))}
+    <div>
+      <h1 className="text-2xl text-indigo-800 my-6">Clients</h1>
+      <div className="rounded-lg border-4 border-indigo-600">
+        {clients.map((client: Client) => (
+          <ClientItemAdmin key={client.id} client={client} />
+        ))}
+      </div>
     </div>
   );
 };
