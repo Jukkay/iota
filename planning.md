@@ -42,16 +42,14 @@ API
 Dashboard
 
 - [x] T3 app
-- [] Client status dashboard (ADMIN ONLY)
+- [x] Client status dashboard (ADMIN ONLY)
     - [x] Basic data: id, key, last activity
-    - [] Green if checked in last 15 minutes
-    - [] Yellow if hasn't checked in last 15-20 minutes
-    - [] Red if hasn't check in more that 20 minutes
-    - [] Button to ping client
-    - [x] Button to go to client information
-- [] Login / Logout
-- [] client route (ADMIN ONLY)
-    - [x] POST to register new client
-    - [x] GET to get clients
-    - [x] DELETE to remove client
-    - [x] PUT to update client
+    - [x] Links to client data
+- [x] Login / Logout
+- [x] client route (ADMIN ONLY)
+    - [x] Get all clients
+    - [x] Get datapoints for a client
+    - [x] Get single client
+    - [x] Create new client
+    - [x] Update client
+    - [x] Delete client
