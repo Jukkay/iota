@@ -1,6 +1,6 @@
 # iota
 
-Iota is a simple network of one server, two clients and one dashboard for administration of clients. The idea is to simulate slim devices running the clients sending sensor data to the server. The clients send sensor data to the server every 5 minutes and checkin every 15 minutes. The server saves the received data to a database and logs every minute the registered clients that haven't logged in the last 15 minutes.
+Iota is a simple network of one server, two clients and one dashboard for administration of the clients. The idea is to simulate slim devices running the clients sending sensor data to the server. The clients send the sensor data to the server every 5 minutes and checkin every 15 minutes. The server saves the received data to a database and logs every minute the registered clients that haven't logged in the last 15 minutes.
 
 ## How to run?
 
