@@ -21,6 +21,26 @@ services:
     ports:
       - 3000:3000
       
+  client2:
+    container_name: 'iota_client2'
+    image: node
+    depends_on:
+      - server
+    volumes:
+      - ./client2:/client2
+    working_dir: "/client2"
+    env_file:
+      - ./client2/.env
+    environment:
+        PORT: 3001
+        API_URL: http://host.docker.internal:4000 ## There's a bug in node fetch that can't resolve localhost so using docker hostname instead
+        DASHBOARD_URL: http://localhost:5000
+    entrypoint: "/bin/bash -c"
+    command:
+      - "npm run dev"
+    ports:
+      - 3001:3001
+      
   db:
     container_name: 'iota_db'
     image: postgres

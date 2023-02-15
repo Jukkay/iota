@@ -15,9 +15,4 @@ app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)({
     origin: [(0, checkENV_1.getApiURL)(), (0, checkENV_1.getDashboardURL)()],
 }));
-app.use('/images', express_1.default.static('./images'));
-// *** Endpoints without JWT auth ***
-app.get('/', (_req, res) => {
-    res.send('Client server is running');
-});
 exports.default = app;

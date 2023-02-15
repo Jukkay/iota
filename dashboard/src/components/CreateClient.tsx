@@ -20,12 +20,12 @@ export const CreateClient = () => {
             <form onSubmit={handleSubmit}>
                 <div className="m-3">
                     <label>Client ID:</label>
-                    <input type="text" className="rounded-lg border-2 border-indigo-600" name='clientId' value={clientId} onChange={e => setClientId(e.target.value)} required={true} minLength={3} maxLength={128}>
+                    <input type="text" className="rounded-lg border-2 border-indigo-600 ml-3" name='clientId' value={clientId} onChange={e => setClientId(e.target.value)} required={true} minLength={3} maxLength={128}>
                     </input>
                 </div>
                 <div className="m-3">
                     <label>Client key:</label>
-                    <input type="text" className="rounded-lg border-2 border-indigo-600" name='clientKey' value={clientKey} onChange={e => setClientKey(e.target.value)} required={true} minLength={8} maxLength={512}>
+                    <input type="text" className="rounded-lg border-2 border-indigo-600 ml-3" name='clientKey' value={clientKey} onChange={e => setClientKey(e.target.value)} required={true} minLength={8} maxLength={512}>
                     </input>
                 </div>
                 <Button classNames="m-3" type="submit" disabled={mutation.isLoading}>Create</Button>

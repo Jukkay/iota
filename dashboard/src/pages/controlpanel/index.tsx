@@ -1,10 +1,8 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
-
 import { api } from "../../utils/api";
-import { ClientList, ClientListAdmin } from "../../components/Client";
+import { ClientListAdmin } from "../../components/Client";
 import { CreateClient } from "../../components/CreateClient";
 
 const ControlPanel: NextPage = () => {

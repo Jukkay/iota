@@ -1,12 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import { ClientSafeProvider, getProviders, LiteralUnion, signIn, signOut, useSession } from "next-auth/react";
-
-import { api } from "../utils/api";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "../components/Form";
-import { useEffect, useState } from "react";
-import { BuiltInProviderType } from "next-auth/providers";
 
 const Home: NextPage = () => {
   return (
@@ -30,10 +25,8 @@ const AdminAuth = () => {
   const { data: sessionData } = useSession();
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <Button classNames="m-6 p-3" onClick={sessionData ? () => void signOut() : () => void signIn("github", {
-        callbackUrl: `${window.location.origin}/dashboard`,
-      })}>{sessionData ? "Sign out" : "Sign in"}</Button>
-    </div>
+    <Button classNames="m-6 p-3" onClick={sessionData ? () => void signOut() : () => void signIn("github", {
+      callbackUrl: `${window.location.origin}/dashboard`,
+    })}>{sessionData ? "Sign out" : "Sign in"}</Button>
   );
 };

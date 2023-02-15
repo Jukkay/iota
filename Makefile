@@ -24,3 +24,6 @@ install-server:
 
 install-client:
 	docker-compose run client "npm install"
+
+install-client2:
+	docker-compose run client2 "npm install"

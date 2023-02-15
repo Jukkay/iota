@@ -1,18 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkENV = exports.getCheckinInterval = exports.getDataInterval = exports.getClientKey = exports.getClientId = exports.getPort = exports.getDashboardURL = exports.getApiURL = exports.getRefreshToken = exports.getServerToken = void 0;
-const getServerToken = () => {
-    if (!process.env.SERVER_TOKEN)
-        throw new Error('Cannot read env for server token');
-    return process.env.SERVER_TOKEN;
-};
-exports.getServerToken = getServerToken;
-const getRefreshToken = () => {
-    if (!process.env.REFRESH_TOKEN)
-        throw new Error('Cannot read env for refresh token');
-    return process.env.REFRESH_TOKEN;
-};
-exports.getRefreshToken = getRefreshToken;
+exports.checkENV = exports.getCheckinInterval = exports.getDataInterval = exports.getClientKey = exports.getClientId = exports.getPort = exports.getDashboardURL = exports.getApiURL = void 0;
 const getApiURL = () => {
     if (!process.env.API_URL)
         throw new Error('Cannot read env for API URL');
@@ -56,8 +44,6 @@ const getCheckinInterval = () => {
 };
 exports.getCheckinInterval = getCheckinInterval;
 const checkENV = () => {
-    (0, exports.getServerToken)();
-    (0, exports.getRefreshToken)();
     (0, exports.getPort)();
     (0, exports.getApiURL)();
     (0, exports.getDashboardURL)();
